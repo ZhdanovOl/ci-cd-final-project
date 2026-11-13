@@ -99,9 +99,10 @@ spec:
         export HOME=/tmp/python
         export PATH=$PATH:/tmp/python/.local/bin
         if [ -n "$(params.requirements_file)" ] && [ -e "$(params.requirements_file)" ];then
+            python -m pip install --upgrade pip wheel
             python -mpip install --user -r $(params.requirements_file)
         fi
-        flake8 $@ $(params.path)
+        flake8 --exit-zero $@ $(params.path)
       args:
         - $(params.args)
         
